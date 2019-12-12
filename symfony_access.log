@@ -1,0 +1,4 @@
+127.0.0.1 - - [12/Dec/2019:14:24:06 +0300] "GET / HTTP/1.1" 404 82529 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36"
+127.0.0.1 - - [12/Dec/2019:14:24:07 +0300] "GET /_wdt/e1dae1 HTTP/1.1" 200 3314 "http://symfony-test.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36"
+127.0.0.1 - - [12/Dec/2019:14:24:07 +0300] "GET /favicon.ico HTTP/1.1" 404 249075 "http://symfony-test.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36"
+127.0.0.1 - - [12/Dec/2019:14:24:11 +0300] "GET /_profiler/e1dae1?panel=logger HTTP/1.1" 200 42195 "http://symfony-test.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36"
