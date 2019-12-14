@@ -3,15 +3,27 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyController extends AbstractController
 {
-    public function number()
+
+	/**
+     * @Route(
+     * "/{__route}/{slug}",
+     * name="lucky-number",
+     * methods={"GET","HEAD"},
+     * requirements={"slug"="\d+"},
+     * defaults={"slug": 1, "title": "Hello world!", "pageName": "Счастливый номер"}
+     * )
+     */
+    public function number(int $slug)
     {
-        $number = random_int(0, 100);
-        
+    	//if(!is_numeric($slug)) throw $this->createNotFoundException('Страница не найдена'); - 404
         return $this->render('lucky/number.html.twig', [
-            'number' => $number,
+            'number' => $slug,
         ]);
     }
 }
