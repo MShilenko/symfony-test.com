@@ -12,7 +12,7 @@ class LuckyController extends AbstractController
 
 	/**
      * @Route(
-     * "/{__route}/{slug}",
+     * "/lucky-number/{slug}",
      * name="lucky-number",
      * methods={"GET","HEAD"},
      * requirements={"slug"="\d+"},
