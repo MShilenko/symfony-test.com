@@ -65,4 +65,39 @@ class PostsController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/posts/{slug}/edit", name="blog_post_edit")
+     */
+    public function edit(Post $post, Request $request, Slugify $slugify)
+    {
+         $form = $this->createForm(PostType::class, $post);
+         $form->handleRequest($request);
+
+         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setSlug($slugify->slugify($post->getTitle()));
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('blog_show', [
+                'slug' => $post->getSlug()
+            ]);
+         }
+
+         return $this->render('posts/new.html.twig', [
+             'form' => $form->createView()
+         ]);
+    }
+
+    /**
+     * @Route("/posts/{slug}/delete", name="blog_post_delete")
+     */
+    public function delete(Post $post)
+    {     
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($post);
+        $em->flush();
+
+        return $this->redirectToRoute('blog_posts');
+    }
+
 }
