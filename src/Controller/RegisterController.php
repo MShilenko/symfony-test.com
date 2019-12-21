@@ -57,4 +57,28 @@ class RegisterController extends AbstractController
             ]);
     }
 
+    /**
+     * @Route("/confirm/{code}", name="email_confirmation")
+     */
+    public function confirmEmail(UserRepository $userRepository, string $code)
+    {
+        /** @var User $user */
+        $user = $userRepository->findOneBy(['confirmationCode' => $code]);
+
+        if ($user === null) {
+          return new Response('404');
+        }
+
+        $user->setEnable(true);
+        $user->setConfirmationCode('');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->flush();
+
+        return $this->render('security/account_confirm.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
 }    
