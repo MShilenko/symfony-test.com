@@ -32,6 +32,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      * @Assert\Email()
      */
     private $email;
@@ -47,6 +48,7 @@ class User implements UserInterface
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(min=6)
      */
     private $plainPassword;
 
@@ -63,6 +65,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", nullable=true)
      */
     private $confirmationCode;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $is_confirmed;
 
     /**
      * @var bool
@@ -138,6 +147,11 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         $this->plainPassword = null;
+    }
+
+    public function getSalt()
+    {
+        return null;
     }
 
     /**

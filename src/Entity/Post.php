@@ -37,6 +37,11 @@ class Post
     private $slug;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $likes;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -108,5 +113,25 @@ class Post
     public function setCreatedAt(\DateTimeInterface $created_at): void
     {
         $this->created_at = $created_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @param mixed $likes
+     *
+     * @return self
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $this;
     }
 }
